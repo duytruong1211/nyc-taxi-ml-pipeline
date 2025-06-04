@@ -1,0 +1,78 @@
+[0m15:29:16.368662 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cb07d10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cb226d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cb22e50>]}
+
+
+============================== 15:29:16.370736 | 9e7aac47-9fc0-4fca-9e94-5d4f6e8e6629 ==============================
+[0m15:29:16.370736 [info ] [MainThread]: Running with dbt=1.9.6
+[0m15:29:16.370998 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/duytruong/.dbt', 'debug': 'False', 'version_check': 'True', 'log_path': 'logs', 'warn_error': 'None', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'invocation_command': 'dbt init nyc_taxi_dbt', 'send_anonymous_usage_stats': 'True'}
+[0m15:29:16.374750 [warn ] [MainThread]: [ConfigFolderDirectory]: Unable to parse logging event dictionary. Failed to parse dir field: expected string or bytes-like object, got 'PosixPath'.. Dictionary: {'dir': PosixPath('/Users/duytruong/.dbt')}
+[0m15:29:16.374915 [info ] [MainThread]: Creating dbt configuration folder at 
+[0m15:29:16.375605 [debug] [MainThread]: Starter project path: /Users/duytruong/mambaforge/envs/work/lib/python3.11/site-packages/dbt/include/starter_project
+[0m15:29:16.377832 [info ] [MainThread]: 
+Your new dbt project "nyc_taxi_dbt" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m15:29:16.377983 [info ] [MainThread]: Setting up your profile.
+[0m15:29:32.564041 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m15:29:32.564332 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m15:29:32.564488 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m15:35:50.831378 [info ] [MainThread]: Profile nyc_taxi_dbt written to /Users/duytruong/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m15:35:50.836970 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 394.48932, "process_in_blocks": "0", "process_kernel_time": 0.139685, "process_mem_max_rss": "116359168", "process_out_blocks": "0", "process_user_time": 0.585714}
+[0m15:35:50.837876 [debug] [MainThread]: Command `dbt init` succeeded at 15:35:50.837689 after 394.49 seconds
+[0m15:35:50.838377 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1052fe350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cb11090>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105237f50>]}
+[0m15:35:50.838778 [debug] [MainThread]: Flushing usage events
+[0m15:35:52.316904 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:36:09.193037 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108bff290>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108c26c90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108ba5290>]}
+
+
+============================== 15:36:09.194671 | 9cb97dc9-33fd-4f3d-a4e9-15b54d7198b6 ==============================
+[0m15:36:09.194671 [info ] [MainThread]: Running with dbt=1.9.6
+[0m15:36:09.194939 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'profiles_dir': '/Users/duytruong/.dbt', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt debug', 'log_format': 'default', 'introspect': 'True', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m15:36:09.198774 [info ] [MainThread]: dbt version: 1.9.6
+[0m15:36:09.198936 [info ] [MainThread]: python version: 3.11.12
+[0m15:36:09.199072 [info ] [MainThread]: python path: /Users/duytruong/mambaforge/envs/work/bin/python3.11
+[0m15:36:09.199186 [info ] [MainThread]: os info: macOS-15.5-arm64-arm-64bit
+[0m15:36:09.222150 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m15:36:09.222389 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m15:36:09.222509 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m15:36:09.232489 [info ] [MainThread]: Using profiles dir at /Users/duytruong/.dbt
+[0m15:36:09.232646 [info ] [MainThread]: Using profiles.yml file at /Users/duytruong/.dbt/profiles.yml
+[0m15:36:09.232784 [info ] [MainThread]: Using dbt_project.yml file at /Users/duytruong/Documents/Projects/nyc_taxi_pipeline/dbt/dbt_project.yml
+[0m15:36:09.232890 [info ] [MainThread]: Configuration:
+[0m15:36:09.232995 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m15:36:09.233093 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m15:36:09.233182 [info ] [MainThread]: Required dependencies:
+[0m15:36:09.233299 [debug] [MainThread]: Executing "git --help"
+[0m15:36:09.239182 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m15:36:09.239660 [debug] [MainThread]: STDERR: "b''"
+[0m15:36:09.239807 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m15:36:09.239945 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m15:36:09.240114 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m15:36:09.240234 [info ] [MainThread]: Could not load dbt_project.yml
+Profile loading failed for the following reason:
+Runtime Error
+  Credentials in profile "nyc_taxi_dbt", target "dev" invalid: Runtime Error
+    thrift connection method requires additional dependencies. 
+    Install the additional required dependencies with `pip install dbt-spark[PyHive]`
+
+
+[0m15:36:09.240353 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </Users/duytruong/Documents/Projects/nyc_taxi_pipeline/dbt/dbt_project.yml> not found
+
+[0m15:36:09.241499 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.07240846, "process_in_blocks": "0", "process_kernel_time": 0.090363, "process_mem_max_rss": "116178944", "process_out_blocks": "0", "process_user_time": 0.499212}
+[0m15:36:09.241684 [debug] [MainThread]: Command `dbt debug` failed at 15:36:09.241642 after 0.07 seconds
+[0m15:36:09.241903 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108c3bed0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104a22210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10495b5d0>]}
+[0m15:36:09.242097 [debug] [MainThread]: Flushing usage events
+[0m15:36:10.477528 [debug] [MainThread]: An error was encountered while trying to flush usage events
