@@ -2,7 +2,7 @@
 target/
 dbt_packages/
 logs/
-spark_full/dbt/nyc_taxi_dbt/spark-warehouse
+spark_full/
 __pycache__
 
 
