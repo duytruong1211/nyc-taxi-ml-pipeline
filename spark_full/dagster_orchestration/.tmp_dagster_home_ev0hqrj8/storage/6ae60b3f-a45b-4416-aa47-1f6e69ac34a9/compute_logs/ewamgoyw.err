@@ -1,0 +1,7 @@
+[32m2025-06-04 21:14:53 +0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 6ae60b3f-a45b-4416-aa47-1f6e69ac34a9 - 91240 - LOGS_CAPTURED - Started capturing logs in process (pid: 91240).
+[32m2025-06-04 21:14:53 +0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 6ae60b3f-a45b-4416-aa47-1f6e69ac34a9 - 91240 - yellow_tripdata_2024_01 - STEP_START - Started execution of step "yellow_tripdata_2024_01".
+[32m2025-06-04 21:14:53 +0700[0m - dagster - [34mINFO[0m - __ASSET_JOB - 6ae60b3f-a45b-4416-aa47-1f6e69ac34a9 - yellow_tripdata_2024_01 - ✅ File already exists: raw/nyc_taxi_yellow/yellow_tripdata_2024-01.parquet
+[32m2025-06-04 21:14:53 +0700[0m - dagster - [34mINFO[0m - __ASSET_JOB - 6ae60b3f-a45b-4416-aa47-1f6e69ac34a9 - yellow_tripdata_2024_01 - ✅ Download succeeded or already exists: raw/nyc_taxi_yellow/yellow_tripdata_2024-01.parquet
+[32m2025-06-04 21:14:53 +0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 6ae60b3f-a45b-4416-aa47-1f6e69ac34a9 - 91240 - yellow_tripdata_2024_01 - STEP_OUTPUT - Yielded output "result" of type "Nothing". (Type check passed).
+[32m2025-06-04 21:14:53 +0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 6ae60b3f-a45b-4416-aa47-1f6e69ac34a9 - 91240 - yellow_tripdata_2024_01 - ASSET_MATERIALIZATION - Materialized value yellow_tripdata_2024_01.
+[32m2025-06-04 21:14:53 +0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 6ae60b3f-a45b-4416-aa47-1f6e69ac34a9 - 91240 - yellow_tripdata_2024_01 - STEP_SUCCESS - Finished execution of step "yellow_tripdata_2024_01" in 25ms.
