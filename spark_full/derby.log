@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Jul 02 16:56:22 ICT 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0197-ca90-e2e2-00000ad1d518 
+on database directory /Users/duytruong/Documents/Projects/nyc_taxi_pipeline/dbt/nyc_taxi_dbt/metastore_db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@42110406 
+Loaded from file:/Users/duytruong/spark-3.4.2/jars/derby-10.14.2.0.jar
+java.vendor=Homebrew
+java.runtime.version=11.0.27+0
+user.dir=/Users/duytruong/Documents/Projects/nyc_taxi_pipeline/spark_full
+os.name=Mac OS X
+os.arch=aarch64
+os.version=15.5
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
