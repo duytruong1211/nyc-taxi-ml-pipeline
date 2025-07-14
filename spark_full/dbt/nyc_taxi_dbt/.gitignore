@@ -2,7 +2,7 @@
 target/
 dbt_packages/
 logs/
-spark_full/dbt/nyc_taxi_dbt/spark-warehouse
+spark_full/
 __pycache__
 
 
@@ -28,9 +28,3 @@ __pycache__/
 mlruns/
 mlartifacts/
 .DS_Store
-
-*.csv
-*.parquet
-
-!data/bronze/dim_date.csv
-!data/bronze/taxi_zone_lookup.csv
