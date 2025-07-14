@@ -28,3 +28,9 @@ __pycache__/
 mlruns/
 mlartifacts/
 .DS_Store
+
+*.csv
+*.parquet
+
+!data/bronze/dim_date.csv
+!data/bronze/taxi_zone_lookup.csv
