@@ -7,6 +7,8 @@ from paths import BRONZE_DIR, SILVER_NYC_CSV,SILVER_WEATHER_CSV,WEATHER_DIR
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 
 from tqdm import tqdm
+
+from functools import partial
 import os 
 
 
@@ -44,6 +46,7 @@ def run_taxi_pipeline_wrapper(
 
 def is_docker():
     return Path("/.dockerenv").exists() or os.getenv("IS_DOCKER") == "1"
+
 
 def wrapped(args):
     ym, n_rows, power, existing_months = args

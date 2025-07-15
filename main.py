@@ -7,23 +7,23 @@ from pipeline.pipeline import run_nyc_ingestion, run_weather_pipeline
 from pipeline.ml_pipeline import run_ml_pipeline
 
 def main_bulk():
-    # year_month_list = [
-    #     (year, month) for year in [2023, 2024] for month in range(1, 13)
-    # ]
+    year_month_list = [
+        (year, month) for year in [2023, 2024] for month in range(1, 13)
+    ]
 
 
-    # run_nyc_ingestion(
-    #     year_month_list=year_month_list,
-    #     output_path=SILVER_NYC_CSV,
-    #     max_workers=8,
-    #     n_rows=100_000,
-    #     power=0.8,
-    #     force=True
-    # )
+    run_nyc_ingestion(
+        year_month_list=year_month_list,
+        output_path=SILVER_NYC_CSV,
+        max_workers=8,
+        n_rows=100_000,
+        power=0.8,
+        force=True
+    )
 
-    # run_weather_pipeline(mode="bulk", force=True, cleanup=True)
-    # build_zone_rolling_features(end_date="2024-12-31")
-    # build_main_trip_features()
+    run_weather_pipeline(mode="bulk", force=True, cleanup=True)
+    build_zone_rolling_features(end_date="2024-12-31")
+    build_main_trip_features()
 
     for m in range(1, 13):
         run_ml_pipeline(
