@@ -13,12 +13,12 @@ from pathlib import Path
 
 def run_ml_pipeline(
     test_month,
+    run_name_prefix,
     df=None,
     log_to_mlflow_flag=True
 ):
     eval_dir = EVAL_RESULTS_DIR
     os.makedirs(eval_dir, exist_ok=True)
-    run_name_prefix="xgb"
     label_col="trip_duration_minutes"
     feature_tag="rolling_3_pruned"
 

@@ -206,6 +206,10 @@ def build_zone_rolling_features(
     end_date: str = "2024-12-31",
     overwrite: bool = False,
 ):
+
+    if not DUCKDB_PATH.exists():
+        DUCKDB_PATH.parent.mkdir(parents=True, exist_ok=True)
+        DuckDBClient(db_path=DUCKDB_PATH)  # This will create the file
     duck = DuckDBClient(db_path=db_path)
     duck.load_csv_as_table(silver_csv_path, "silver_taxi")
 

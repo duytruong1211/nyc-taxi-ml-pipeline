@@ -1,10 +1,11 @@
-from paths import SILVER_NYC_CSV , SILVER_WEATHER_CSV,ZONE_FEATURES_PARQUET, MAIN_FEATURES_PARQUET
+from paths import SILVER_NYC_CSV , SILVER_WEATHER_CSV,ZONE_FEATURES_PARQUET, MAIN_FEATURES_PARQUET,EVAL_RESULTS_DIR,DUCKDB_PATH
 import pandas as pd
 from etl.gold import build_zone_rolling_features,build_main_trip_features
 from pipeline.pipeline import run_weather_pipeline
 import argparse
 from pipeline.pipeline import run_nyc_ingestion, run_weather_pipeline
 from pipeline.ml_pipeline import run_ml_pipeline
+import os 
 
 def main_bulk():
     year_month_list = [
@@ -28,7 +29,8 @@ def main_bulk():
     for m in range(1, 13):
         run_ml_pipeline(
             test_month=pd.to_datetime(f"2024-{m:02d}-01"),
-            log_to_mlflow_flag=True
+            log_to_mlflow_flag=True,
+            run_name_prefix="prod_xgb"
         )
 
 def main_test():
@@ -47,15 +49,14 @@ def main_test():
     build_zone_rolling_features(end_date="2024-04-30")
     build_main_trip_features()
 
-    for year, month in year_month_list:
-        run_ml_pipeline(
-            test_month=pd.to_datetime(f"{year}-{month:02d}-01"),
-            log_to_mlflow_flag=True,
-            run_name_prefix="test"
-        )
+    run_ml_pipeline(
+        test_month=pd.to_datetime("2024-04-01"),
+        log_to_mlflow_flag=True,
+        run_name_prefix="test_xgb")
+
 
     # 🧹 Clean up test outputs to avoid interference with bulk
-    for f in [SILVER_NYC_CSV, SILVER_WEATHER_CSV, ZONE_FEATURES_PARQUET, MAIN_FEATURES_PARQUET]:
+    for f in [SILVER_NYC_CSV, SILVER_WEATHER_CSV, ZONE_FEATURES_PARQUET, MAIN_FEATURES_PARQUET,EVAL_RESULTS_DIR,DUCKDB_PATH]:
         try:
             os.remove(f)
             print(f"🧹 Deleted: {f}")
@@ -87,7 +88,8 @@ def main_incremental(year: int, month: int):
 
     run_ml_pipeline(
         test_month=pd.to_datetime(f"{year}-{month:02d}-01"),
-        log_to_mlflow_flag=True
+        log_to_mlflow_flag=True,
+        run_name_prefix="prod_xgb"
     )
 
 

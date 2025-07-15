@@ -59,10 +59,9 @@ def log_pipeline_to_mlflow(
 ):
     """
     Log model, params, metrics, tags to MLflow for a single test month run.
-
+    """
     mlflow.set_tracking_uri("file:./mlruns")
     # mlflow.set_tracking_uri("file:///app/mlruns")  
-
 
     with mlflow.start_run(run_name=run_name):
         for k, v in metadata["params"].items():
@@ -104,7 +103,7 @@ def save_predictions_to_csv(test_df, preds, test_start, run_name_prefix, eval_di
         eval_dir (str): Directory to save output CSV.
     """
     os.makedirs(eval_dir, exist_ok=True)
-
+    
     run_name = f"{run_name_prefix}_{test_start.strftime('%Y-%m')}"
     test_month_str = test_start.strftime('%Y-%m')
 
