@@ -35,3 +35,4 @@ mlartifacts/
 !data/bronze/taxi_zone_lookup.csv
 
 data/*
+data/duck/*.duckdb
