@@ -34,4 +34,4 @@ mlartifacts/
 
 !data/bronze/dim_date.csv
 !data/bronze/taxi_zone_lookup.csv
-data/*
+data/*data/duck/nyc_taxi.duckdb
