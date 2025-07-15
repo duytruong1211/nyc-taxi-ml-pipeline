@@ -19,12 +19,9 @@ class DuckDBClient:
 
     def register_df(self, table_name: str, df: pd.DataFrame):
         self.con.register(table_name, df)
-
+        
     def run_query(self, sql: str) -> pd.DataFrame:
-        cursor = self.con.execute(sql)
-        column_names = [desc[0] for desc in cursor.description]
-        data = cursor.fetchall()
-        return pd.DataFrame(data, columns=column_names)
+        return self.con.execute(sql).df()
 
     
     def run_inplace(self, sql: str):
