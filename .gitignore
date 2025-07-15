@@ -1,0 +1,39 @@
+
+target/
+dbt_packages/
+logs/
+spark_full/dbt/nyc_taxi_dbt/spark-warehouse
+__pycache__
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+# Pytest cache
+.cache
+.pytest_cache/
+# Coverage reports
+.coverage
+.coverage.*
+*.coverage
+# Pyre type checker
+.pyre/          
+
+# MLflow artifacts
+mlruns/
+mlartifacts/
+.DS_Store
+
+*.csv
+*.parquet
+
+!data/bronze/dim_date.csv
+!data/bronze/taxi_zone_lookup.csv
+
+data/*
+data/duck/*.duckdb
+data/duck/*.duckdb

@@ -1,0 +1,30 @@
+
+target/
+dbt_packages/
+logs/
+spark_full/
+__pycache__
+
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+# Pytest cache
+.cache
+.pytest_cache/
+# Coverage reports
+.coverage
+.coverage.*
+*.coverage
+# Pyre type checker
+.pyre/          
+
+# MLflow artifacts
+mlruns/
+mlartifacts/
+.DS_Store
