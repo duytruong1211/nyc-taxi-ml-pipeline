@@ -1,7 +1,4 @@
----
-title: "NYC Taxi ML Pipeline"
-output: github_document
----
+
 
 # 🗽 NYC Taxi ML Pipeline
 
@@ -39,12 +36,40 @@ Both versions are maintained:
 
 ## 🚀 Quickstart
 
+> 📌 **Recommended Python version**: 3.10
+
+Set up and run the full pipeline locally with no cluster needed ( Recommended for Mac User)
 
 ```bash
-pip install -r requirements.txt
-python main.py
-```
+# 1. Create virtual environment
+python3.10 -m venv nyc_taxi
+source nyc_taxi/bin/activate  # Windows: .\spark_env\Scripts\activate
 
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Run test mode (quick demo)
+python main.py --mode=test
+# ✅ Ingest Jan–Apr 2024
+# ✅ Train model for April 2024
+# ✅ Good for validating setup + MLflow run
+
+# 4. Run full pipeline (bulk mode)
+python main.py --mode=bulk
+# ✅ Process all 2023–2024 data
+# ✅ Build rolling features
+# ✅ Train + log monthly models
+
+# 5. Ingest new data (incremental)
+python main.py --mode=incremental --year=2025 --month=1
+# ✅ Add new month (e.g. Jan 2025)
+# ✅ Update features + retrain model
+
+# 6. Launch MLflow dashboard
+mlflow ui
+# → http://localhost:5000
+
+```
 ---
 
 ## 📂 Project Structure
