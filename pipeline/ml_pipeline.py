@@ -42,6 +42,7 @@ def run_ml_pipeline(
     X_train, y_train = train_df[all_features], train_df[label_col]
     X_test, y_test = test_df[all_features], test_df[label_col]
     # --- Train model ---
+    print(f"\n🚧 Building model for {test_start.strftime('%Y-%m')}...")
     model = XGBRegressor(**get_xgb_params())
     model.fit(X_train, y_train)
     preds = model.predict(X_test)
@@ -50,6 +51,8 @@ def run_ml_pipeline(
     metrics = evaluate_model(y_test, preds)
 
     df_weight, df_gain = extract_feature_importance(model, all_features,test_start)
+
+    print("✅ Model built and evaluated.")
 
     # # --- Save results to CSV ---
 
@@ -75,6 +78,7 @@ def run_ml_pipeline(
     # --- MLflow logging ---
     if log_to_mlflow_flag:
         run_name = f"{run_name_prefix}_{test_start.strftime('%Y-%m')}"
+        print(f"\n📌 Starting MLflow logging for: {run_name}")
         metadata = generate_metadata(test_start, train_start, train_end, feature_tag, label_col)
  
         log_pipeline_to_mlflow(
@@ -87,6 +91,7 @@ def run_ml_pipeline(
             df_weight=df_weight,
             X_test=X_test
         )
+        print("✅ Finished MLflow logging.")
 
     print(f"\n✅ {test_start.strftime('%Y-%m')}: MAE={metrics['mae']:.4f}, RMSE={metrics['rmse']:.4f}, R2={metrics['r2']:.4f}")
 

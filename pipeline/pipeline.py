@@ -7,7 +7,7 @@ from paths import BRONZE_DIR, SILVER_NYC_CSV,SILVER_WEATHER_CSV,WEATHER_DIR
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 
 from tqdm import tqdm
-from functools import partial
+import os 
 
 
 # ProcessPoolExecutor
@@ -45,6 +45,15 @@ def run_taxi_pipeline_wrapper(
 def is_docker():
     return Path("/.dockerenv").exists() or os.getenv("IS_DOCKER") == "1"
 
+def wrapped(args):
+    ym, n_rows, power, existing_months = args
+    return run_taxi_pipeline_wrapper(
+        ym=ym,
+        n_rows=n_rows,
+        power=power,
+        existing_months=existing_months
+    )
+
 def run_nyc_ingestion(
     year_month_list: list[tuple[int, int]],
     output_path: Path = SILVER_NYC_CSV,
@@ -77,24 +86,14 @@ def run_nyc_ingestion(
 
     Executor = ThreadPoolExecutor if is_docker() else ProcessPoolExecutor
 
-    def wrapped(ym):
-        return run_taxi_pipeline_wrapper(
-            ym=ym,
-            n_rows=n_rows,
-            power=power,
-            existing_months=existing_months
-        )
+    args_list = [(ym, n_rows, power, existing_months) for ym in year_month_list]
 
-    if max_workers == 1:
-        for ym in tqdm(year_month_list, desc="Serial ingestion"):
-            wrapped(ym)
-    else:
-        with Executor(max_workers=max_workers) as executor:
-            list(tqdm(
-                executor.map(wrapped, year_month_list),
-                total=len(year_month_list),
-                desc="Parallel ingestion"
-            ))
+    with Executor(max_workers=max_workers) as executor:
+        list(tqdm(
+            executor.map(wrapped, args_list),
+            total=len(args_list),
+            desc="Parallel ingestion"
+        ))
 
 
 def run_weather_pipeline(
