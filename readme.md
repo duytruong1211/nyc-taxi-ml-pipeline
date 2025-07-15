@@ -43,25 +43,25 @@ Set up and run the full pipeline locally with no cluster needed ( Recommended fo
 ```bash
 # 1. Create virtual environment
 python3.10 -m venv nyc_taxi
-source nyc_taxi/bin/activate  # Windows: .\spark_env\Scripts\activate
+source nyc_taxi/bin/activate  
 
 # 2. Install dependencies
 pip install -r requirements.txt
 
 # 3. Run test mode (quick demo)
-python main.py --mode=test
+python main.py --mode= est
 # ✅ Ingest Jan–Apr 2024
 # ✅ Train model for April 2024
 # ✅ Good for validating setup + MLflow run
 
 # 4. Run full pipeline (bulk mode)
-python main.py --mode=bulk
+python main.py --mode bulk
 # ✅ Process all 2023–2024 data
 # ✅ Build rolling features
 # ✅ Train + log monthly models
 
 # 5. Ingest new data (incremental)
-python main.py --mode=incremental --year=2025 --month=1
+python main.py --mode incremental --year 2025 --month 1
 # ✅ Add new month (e.g. Jan 2025)
 # ✅ Update features + retrain model
 
@@ -88,62 +88,45 @@ nyc-taxi-ml-pipeline/
 
 ---
 
-## 🔍 Model Performance
+## 🔍 Model Overview
 
-| Month     | R²   | RMSE (min) |
-|-----------|------|------------|
-| Jan 2025  | 0.78 | 5.02       |
-| Feb 2025  | 0.80 | 4.88       |
-| Mar 2025  | 0.77 | 5.20       |
-| Peak (Aug)| **0.81** | **4.80** |
+After running the pipeline, launch MLflow UI:
 
-> 🧠 Drop in December likely caused by holiday route disruptions and erratic demand.
+```bash
+mlflow ui
+```
+You will see a dashboard like this
+![MLflow Dashboard](utils/mlflow_output.png)
+
 
 ---
 
 ## 🧱 Feature Store Summary
 
-- **Temporal**:
-  - Hour of day (raw + sin/cos), day-of-week, weekend flag, holiday/payroll flag
-  - Rush hour (morning/evening)
-- **Spatial**:
-  - Pickup/dropoff zone & borough, same zone/borough, airport flags
-- **Rolling Aggregates**:
-  - `trip_count`, `avg_duration`, `avg_speed`, `avg_distance`, `avg_fare`
-  - Precomputed for 3, 6, 12 months per PU_DO zone pair
-- **Weather**:
-  - Hourly temperature, precipitation, snow, windspeed, cloudcover
-  - Joined by borough and timestamp
+- **Temporal**  
+  `pickup_hour`, `is_rush_hour_morning`, `is_weekend`
+
+- **Calendar**  
+  `is_holiday`, `is_near_holiday`, `is_payroll_window`
+
+- **Zone & Ride Info**  
+  `is_same_zone`, `is_airport_pu_trip`, `passenger_count`
+
+- **Weather** *(by borough & hour)*  
+  `temperature`, `precipitation`, `cloudcover`
+
+- **Rolling Aggregates** *(PU-DO pairs)*  
+  `avg_duration_min_3mo`, `avg_fare_12mo`, `trip_count_12mo`
+
 
 ---
 
-## 🔗 MLflow Demo
 
-MLflow tracks:
+## 📘 Reports
 
-- Run parameters: model type, feature set
-- Metrics: RMSE, MAE, R²
-- Feature importance (split gain + gain weight)
-- Versioned artifact logs (models, inputs)
+- 🗒️ [Notion Summary Report](https://bitter-aster-788.notion.site/NYC-Taxi-ETA-Forecasting-Modeling-Meets-Real-World-Chaos-2248b64123bf805991cae210535ab3c7) *(stakeholder view – business insights)*
+- 📓 [Notebook Spark Walkthrough](spark_full/spark_eta_model.ipynb) *(Spark ML version – deep dive)*
 
-👉 Access locally at: [http://localhost:5000](http://localhost:5000)
-
----
-
-## 🧠 Key Insights
-
-- 🛫 **Airport trips**: Longer and more variable — peak morning traffic inflates duration
-- 🌧️ **Heavy rain & snow**: Strong predictors of delay — shown via gain importance
-- 💰 **Fare vs duration**: Weak correlation in December — potential surge fare anomaly
-- ⌛ **Rush hours**: Morning > Evening in impact on average trip duration
-
----
-
-## 📘 Reports & Demos
-
-- 🗒️ [Notion Summary Report](#) *(stakeholder view – business insights)*
-- 📓 [Notebook HTML Walkthrough](#) *(Spark ML version – deep dive)*
-- 🛠️ [GitHub Repo](https://github.com/duytruong1211/nyc-taxi-ml-pipeline) *(lean pandas version – forkable)*
 
 ---
 
