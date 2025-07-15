@@ -7,8 +7,10 @@ from paths import BRONZE_DIR, SILVER_NYC_CSV,SILVER_WEATHER_CSV,WEATHER_DIR
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 
 from tqdm import tqdm
+
 from functools import partial
 import os 
+
 
 # ProcessPoolExecutor
 
@@ -54,7 +56,6 @@ def wrapped(args):
         power=power,
         existing_months=existing_months
     )
-
 
 def run_nyc_ingestion(
     year_month_list: list[tuple[int, int]],

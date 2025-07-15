@@ -5,7 +5,6 @@ logs/
 spark_full/dbt/nyc_taxi_dbt/spark-warehouse
 __pycache__
 
-
 # Python cache
 __pycache__/
 *.py[cod]
@@ -34,3 +33,5 @@ mlartifacts/
 
 !data/bronze/dim_date.csv
 !data/bronze/taxi_zone_lookup.csv
+
+data/*

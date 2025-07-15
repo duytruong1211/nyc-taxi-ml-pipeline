@@ -4,6 +4,9 @@ import mlflow
 from models.configs import generate_metadata
 import numpy as np
 
+from pathlib import Path
+
+
 def save_evaluation_outputs(eval_dir, run_name_prefix, test_start, train_start, train_end, metrics, df_weight, df_gain):
     """
     Appends model evaluation outputs (metrics and feature importance) to CSV files in eval_dir.
@@ -56,10 +59,9 @@ def log_pipeline_to_mlflow(
 ):
     """
     Log model, params, metrics, tags to MLflow for a single test month run.
-    """
 
-    # mlflow.set_tracking_uri("http://127.0.0.1:5000")
-    mlflow.set_tracking_uri("file:///app/mlruns")  
+    mlflow.set_tracking_uri("file:./mlruns")
+    # mlflow.set_tracking_uri("file:///app/mlruns")  
 
 
     with mlflow.start_run(run_name=run_name):

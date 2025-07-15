@@ -19,11 +19,11 @@ class DuckDBClient:
 
     def register_df(self, table_name: str, df: pd.DataFrame):
         self.con.register(table_name, df)
-        
+
+
     def run_query(self, sql: str) -> pd.DataFrame:
         return self.con.execute(sql).df()
 
-    
     def run_inplace(self, sql: str):
         self.con.execute(sql)
 
