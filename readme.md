@@ -1,5 +1,3 @@
-
-
 # 🗽 NYC Taxi ML Pipeline
 
 A full-stack machine learning pipeline to predict NYC taxi trip duration.
@@ -7,6 +5,13 @@ A full-stack machine learning pipeline to predict NYC taxi trip duration.
 **Designed for:** clarity, reproducibility, and real-world ML infra readiness — with lean setup for cloning.
 
 ---
+## Project Summary
+
+This is a solo project built as a demonstration of end-to-end ML workflow using NYC Taxi data.  
+All data processing, modeling, and documentation were done by me.
+
+Data Source: NYC Taxi Dataset (https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)  
+Weather Data: Open-Meteo API (https://open-meteo.com)  
 
 ## 🧭 Project Evolution
 
@@ -76,14 +81,29 @@ mlflow ui
 
 ```text
 nyc-taxi-ml-pipeline/
-├── data/                # Data snapshots (bronze/silver/gold)
-├── models/              # Saved XGBoost models
-├── notebooks/           # EDA + diagnostics
-├── pipeline/            # Data ingestion and transformation scripts
-├── weather/             # Open-Meteo ingestion and precompute logic
-├── main.py              # Pipeline entry point
-├── Dockerfile
-└── README.md
+├── data/                            # Raw and processed datasets
+│   ├── bronze/                      # Raw ingested files
+│   ├── silver/                      # Cleaned + enriched datasets
+│   └── gold/                        # Final ML-ready feature tables
+├── etl/                             # Scripts for data ingestion and transformation 
+│   ├── bronze.py                    # Data ingestion
+│   └── silver.py                    # Ligh transform, downsizing 
+│   └── gold.py                      # Enriched, ultilized DUCKDB
+├── models/                          # Scripts for model building
+│   ├── configs.py                   # Constant variables, Tuned hyperparameters
+│   └── evaluates.py                 # Metrics, Feature Importances
+│   └── prepare.py                   # Train test split, Encoding
+
+├── pipeline/                        # Combine everything together
+│   ├── ml_pipeline.py               # Build Model, save results to MLFLow
+│   ├── pipeline.py                  # Bronze -> Silver -> Gold
+
+│
+├── spark_full/                      # Spark artifact, dbt, dagster
+│
+├── main.py                          # Pipeline orchestration entry point
+├── Dockerfile                       # Reproducible container setup for pipeline
+└── README.md                        # Project overview and usage guide
 ```
 
 ---
@@ -145,5 +165,5 @@ You will see a dashboard like this
 
 ---
 
-Built by [@duytruong1211](https://github.com/duytruong1211) — tailored for clarity, portability, and real-world data science workflow.
+Built by [@duytruong1211](https://github.com/duytruong1211) 
 
