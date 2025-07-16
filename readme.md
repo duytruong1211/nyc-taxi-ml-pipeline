@@ -13,6 +13,15 @@ All data processing, modeling, and documentation were done by me.
 Data Source: NYC Taxi Dataset (https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)  
 Weather Data: Open-Meteo API (https://open-meteo.com)  
 
+
+## 📘 Reports
+
+- 🗒️ [Notion Summary Report](https://bitter-aster-788.notion.site/NYC-Taxi-ETA-Forecasting-Modeling-Meets-Real-World-Chaos-2248b64123bf805991cae210535ab3c7) *(stakeholder view – business insights)*
+- 📓 [Notebook Spark Walkthrough](spark_full/spark_eta_model.ipynb) *(Spark ML version – deep dive)*
+
+
+---
+
 ## 🧭 Project Evolution
 
 > **Prototyped in Spark. Delivered in pandas.**
@@ -142,13 +151,7 @@ You will see a dashboard like this
 ---
 
 
-## 📘 Reports
 
-- 🗒️ [Notion Summary Report](https://bitter-aster-788.notion.site/NYC-Taxi-ETA-Forecasting-Modeling-Meets-Real-World-Chaos-2248b64123bf805991cae210535ab3c7) *(stakeholder view – business insights)*
-- 📓 [Notebook Spark Walkthrough](spark_full/spark_eta_model.ipynb) *(Spark ML version – deep dive)*
-
-
----
 
 ## 🧰 Tech Stack
 
