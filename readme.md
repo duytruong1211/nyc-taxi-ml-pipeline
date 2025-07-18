@@ -104,11 +104,10 @@ nyc-taxi-ml-pipeline/
 │   ├── configs.py                   # Constant variables, Tuned hyperparameters
 │   └── evaluates.py                 # Metrics, Feature Importances
 │   └── prepare.py                   # Train test split, Encoding
-
+│
 ├── pipeline/                        # Combine everything together
 │   ├── ml_pipeline.py               # Build Model, save results to MLFLow
 │   ├── pipeline.py                  # Bronze -> Silver -> Gold
-
 │
 ├── spark_full/                      # Spark artifact, dbt, dagster
 │
