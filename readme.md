@@ -125,7 +125,7 @@ After running the pipeline, launch MLflow UI:
 ```bash
 mlflow ui
 ```
-You will see a dashboard like this
+You will see a dashboard like this. CLick on the Columns tab to track metrics( MAE, R2, feature gains/weight)
 ![MLflow Dashboard](utils/mlflow_output.png)
 
 
