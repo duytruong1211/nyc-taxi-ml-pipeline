@@ -94,10 +94,12 @@ nyc-taxi-ml-pipeline/
 │   ├── bronze/                      # Raw ingested files
 │   ├── silver/                      # Cleaned + enriched datasets
 │   └── gold/                        # Final ML-ready feature tables
+│
 ├── etl/                             # Scripts for data ingestion and transformation 
 │   ├── bronze.py                    # Data ingestion
 │   └── silver.py                    # Ligh transform, downsizing 
 │   └── gold.py                      # Enriched, ultilized DUCKDB
+│
 ├── models/                          # Scripts for model building
 │   ├── configs.py                   # Constant variables, Tuned hyperparameters
 │   └── evaluates.py                 # Metrics, Feature Importances
