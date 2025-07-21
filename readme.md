@@ -63,7 +63,7 @@ source nyc_taxi/bin/activate
 pip install -r requirements.txt
 
 # 3. Run test mode (quick demo)
-python main.py --mode= test
+python main.py --mode test
 # ✅ Ingest Jan–Apr 2024
 # ✅ Train model for April 2024
 # ✅ Good for validating setup + MLflow run
