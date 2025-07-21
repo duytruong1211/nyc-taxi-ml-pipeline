@@ -21,7 +21,7 @@ ZONE_FEATURES_PARQUET = GOLD_DIR / "zone_avg_rolling_features.parquet"
 MAIN_FEATURES_PARQUET = GOLD_DIR / "main_trip_features.parquet"  
 
 # DuckDB path
-DUCKDB_PATH = PROJECT_ROOT / "data" / "duck" / "nyc_taxi.duckdb"
+DUCKDB_PATH = PROJECT_ROOT / "data" / "duck" 
 
 # Evaluation Data
 EVAL_RESULTS_DIR = "data/eval_results"
