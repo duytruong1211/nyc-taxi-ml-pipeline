@@ -56,8 +56,10 @@ Set up and run the full pipeline locally with no cluster needed ( Recommended fo
 
 ```bash
 # 1. Create virtual environment
-python3.10 -m venv nyc_taxi
-source nyc_taxi/bin/activate  
+git clone https://github.com/duytruong1211/nyc-taxi-ml-pipeline.git
+cd nyc-taxi-ml-pipeline
+conda create -n nyc_taxi python=3.10 -y
+conda activate nyc_taxi
 
 # 2. Install dependencies
 pip install -r requirements.txt
