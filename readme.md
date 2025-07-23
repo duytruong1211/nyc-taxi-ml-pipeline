@@ -66,37 +66,39 @@ docker-compose --version
 
 
 
-```bash
-# 1. Create virtual environment
+# ✅ Clone the repo
 git clone https://github.com/duytruong1211/nyc-taxi-ml-pipeline.git
 cd nyc-taxi-ml-pipeline
-conda create -n nyc_taxi python=3.10 -y
-conda activate nyc_taxi
 
-# 2. Install dependencies
-pip install -r requirements.txt
+# 🔨 One-time build (first-time users)
+make build
 
-# 3. Run test mode (quick demo)
-python main.py --mode test
-# ✅ Ingest Jan–Apr 2024
-# ✅ Train model for April 2024
-# ✅ Good for validating setup + MLflow run
+# 🧪 Run test pipeline (quick demo)
+make test
+# → Ingests Jan–Apr 2024
+# → Trains + logs model for April 2024
+# → Fast setup validation
 
-# 4. Run full pipeline (bulk mode)
-python main.py --mode bulk
-# ✅ Process all 2023–2024 data
-# ✅ Build rolling features
-# ✅ Train + log monthly models
+# 🛠️ Run full historical pipeline (bulk mode)
+make bulk
+# → Ingests + processes all 2023–2024 trips
+# → Builds rolling features per PU/DO pair
+# → Trains + logs models per month
 
-# 5. Ingest new data (incremental)
-python main.py --mode incremental --year 2025 --month 1
-# ✅ Add new month (e.g. Jan 2025)
-# ✅ Update features + retrain model
+# 📅 Ingest new month (incremental mode)
+make incremental YEAR=2025 MONTH=1
+# → Ingests new trip data
+# → Updates zone-pair aggregates
+# → Retrains model on latest month
 
-# 6. Launch MLflow dashboard
-mlflow ui
-# → http://localhost:5000
+# 📊 Launch MLflow UI to track model runs
+make ui
+# → Open http://localhost:5001 in browser
 
+# 🧼 Cleanup (optional)
+make stop            # Stop all containers
+make clean           # Stop + remove volumes
+make clean-orphans   # Delete leftover run containers
 ```
 ---
 
