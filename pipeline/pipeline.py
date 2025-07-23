@@ -147,3 +147,20 @@ def run_weather_pipeline(
     if cleanup:
         cleanup_weather_jsons(WEATHER_DIR, mode=mode)
 
+
+def run_ingestion_loop(year_month_list, end_date: str):
+    SILVER_NYC_CSV.parent.mkdir(parents=True, exist_ok=True)
+
+    existing_months = set()
+    if SILVER_NYC_CSV.exists():
+        existing_df = pd.read_csv(SILVER_NYC_CSV, usecols=["snapshot_month"])
+        existing_months = set(pd.to_datetime(existing_df["snapshot_month"]).dt.to_period("M"))
+
+    for year, month in year_month_list:
+        period = pd.Period(f"{year}-{month:02d}")
+        if period in existing_months:
+            print(f"✅ Skipping {period} (already processed)")
+            continue
+        run_taxi_pipeline(year=year, month=month, n_rows=100_000, power=0.8, existing_months=existing_months)
+
+

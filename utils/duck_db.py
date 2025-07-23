@@ -2,6 +2,7 @@ import duckdb
 import pandas as pd
 from pathlib import Path
 from typing import Optional, Dict, Union
+import os 
 
 class DuckDBClient:
     def __init__(self, db_path: str = ":memory:"):
@@ -31,16 +32,46 @@ class DuckDBClient:
         self,
         df: pd.DataFrame,
         path: Union[str, Path],
+        overwrite: bool = True
+    ):
+        path = Path(path)
+        abs_path = path.resolve()
+        print(f"📂 Checking: {abs_path} | Exists: {path.exists()}")
+
+        path.parent.mkdir(parents=True, exist_ok=True)
+
+        if path.exists():
+            try:
+                print(f"🗑️ Deleting existing file: {abs_path}")
+                os.remove(abs_path)
+            except Exception as e:
+                print(f"❌ Failed to delete {abs_path}: {e}")
+                raise
+
+        try:
+            print(f"💾 Writing {len(df):,} rows to {abs_path}")
+            df.to_parquet(abs_path, index=False, compression="snappy")
+        except Exception as e:
+            print(f"❌ Failed to write parquet to {abs_path}: {e}")
+            raise
+
+
+
+    def save_to_parquet(
+        self,
+        df: pd.DataFrame,
+        path: Union[str, Path],
+        overwrite: bool = False,
         dedup_cols: Optional[list] = None,
     ):
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
 
-        if not path.exists():
+        if overwrite or not path.exists():
             df.to_parquet(path, index=False)
             return
 
-        # Load existing data
+        # Load existing and append
         existing_df = pd.read_parquet(path)
         combined_df = pd.concat([existing_df, df], ignore_index=True)
 
@@ -48,6 +79,5 @@ class DuckDBClient:
             combined_df.drop_duplicates(subset=dedup_cols, keep="last", inplace=True)
 
         combined_df.to_parquet(path, index=False)
-
     def close(self):
         self.con.close()

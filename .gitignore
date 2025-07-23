@@ -3,7 +3,6 @@ target/
 dbt_packages/
 logs/
 spark_full/dbt/nyc_taxi_dbt/spark-warehouse
-__pycache__
 
 # Python cache
 __pycache__/
@@ -11,6 +10,7 @@ __pycache__/
 *.pyo
 *.pyd
 *.so
+*.pyc
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
 # Pytest cache
@@ -31,9 +31,8 @@ mlartifacts/
 *.csv
 *.parquet
 
+data/*
+!data/bronze/
 !data/bronze/dim_date.csv
 !data/bronze/taxi_zone_lookup.csv
-
-data/*
-!data/duck/nyc_taxi.duckdb
 

@@ -47,12 +47,24 @@ Both versions are maintained:
 - **`/spark_full/`** folder — full Spark/dbt version
 - **Root folder** — lean pandas version for reproducibility and demo
 
+## 🚧 Prerequisites
 
+Before you run this project, make sure you have the following installed:
+
+### 🐳 Docker
+
+- [Install Docker Desktop](https://www.docker.com/products/docker-desktop/)  
+  (Required for building and running containers)
+
+You can test Docker is working with:
+
+```bash
+docker --version
+docker-compose --version
+```
 ## 🚀 Quickstart
 
-> 📌 **Recommended Python version**: 3.10
 
-Set up and run the full pipeline locally with no cluster needed ( Recommended for Mac User)
 
 ```bash
 # 1. Create virtual environment
@@ -160,7 +172,8 @@ You will see a dashboard like this. CLick on the Columns tab to track metrics( M
 
 - **Compute**: PySpark 3.x, Docker
 - **ETL**: Python, dbt
-- **ML**: XGBoost, scikit-learn
+- **DB**: DuckDB
+- **ML**: XGBoost
 - **Tracking**: MLflow
 - **Data**: NYC TLC, Open-Meteo Archive API
 - **Orchestration**: Dagster *(optional, not required for pandas version)*

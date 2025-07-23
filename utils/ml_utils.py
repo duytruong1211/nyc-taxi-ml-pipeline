@@ -60,8 +60,16 @@ def log_pipeline_to_mlflow(
     """
     Log model, params, metrics, tags to MLflow for a single test month run.
     """
-    mlflow.set_tracking_uri("file:./mlruns")
+    # mlflow.set_tracking_uri("file:./mlruns")
     # mlflow.set_tracking_uri("file:///app/mlruns")  
+    mlflow.set_tracking_uri("file:/app/mlruns")
+
+
+    if mlflow.get_experiment_by_name("Default") is None:
+        mlflow.create_experiment("Default")
+
+    mlflow.set_experiment("Default")
+
 
     with mlflow.start_run(run_name=run_name):
         for k, v in metadata["params"].items():
