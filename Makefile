@@ -23,3 +23,5 @@ stop:
 
 clean:
 	docker-compose down -v
+clean-orphans:
+	docker-compose down --remove-orphans
