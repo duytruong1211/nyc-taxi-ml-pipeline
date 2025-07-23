@@ -180,7 +180,7 @@ You will see a dashboard like this. CLick on the Columns tab to track metrics( M
 
 - **Compute**: PySpark 
 - **ETL**: Python, dbt
-- **DB**: DuckDB
+- **DB**: DuckDB, Spark dbt warehouse
 - **ML**: XGBoost
 - **Tracking**: MLflow
 - **Data**: NYC TLC, Open-Meteo Archive API
