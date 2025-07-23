@@ -51,7 +51,7 @@ Both versions are maintained:
 
 Before you run this project, make sure you have the following installed:
 
-### 🐳 Docker
+## 🐳 Docker
 
 - [Install Docker Desktop](https://www.docker.com/products/docker-desktop/)  
   (Required for building and running containers)
@@ -63,39 +63,36 @@ docker --version
 docker-compose --version
 ```
 ## 🚀 Quickstart
-
-
-
-# ✅ Clone the repo
+```bash
+### ✅ Clone the repo
 git clone https://github.com/duytruong1211/nyc-taxi-ml-pipeline.git
 cd nyc-taxi-ml-pipeline
 
-# 🔨 One-time build (first-time users)
+### 🔨 One-time build (first-time users)
 make build
 
-# 🧪 Run test pipeline (quick demo)
+### 🧪 Run test pipeline (quick demo)
 make test
-# → Ingests Jan–Apr 2024
-# → Trains + logs model for April 2024
-# → Fast setup validation
+### → Ingests Jan–Apr 2024
+### → Trains + logs model for April 2024
 
-# 🛠️ Run full historical pipeline (bulk mode)
+### 🛠️ Run full historical pipeline (bulk mode)
 make bulk
-# → Ingests + processes all 2023–2024 trips
-# → Builds rolling features per PU/DO pair
-# → Trains + logs models per month
+### → Ingests + processes all 2023–2024 trips
+### → Builds rolling features per PU/DO pair
+### → Trains + logs models per month
 
-# 📅 Ingest new month (incremental mode)
+### 📅 Ingest new month (incremental mode)
 make incremental YEAR=2025 MONTH=1
-# → Ingests new trip data
-# → Updates zone-pair aggregates
-# → Retrains model on latest month
+### → Ingests new trip data
+### → Updates zone-pair aggregates
+### → Retrains model on latest month
 
-# 📊 Launch MLflow UI to track model runs
+### 📊 Launch MLflow UI to track model runs
 make ui
-# → Open http://localhost:5001 in browser
+### → Open http://localhost:5001 in browser
 
-# 🧼 Cleanup (optional)
+### 🧼 Cleanup (optional)
 make stop            # Stop all containers
 make clean           # Stop + remove volumes
 make clean-orphans   # Delete leftover run containers
