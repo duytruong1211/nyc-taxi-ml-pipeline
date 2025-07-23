@@ -70,13 +70,13 @@ def run_ml_pipeline(
     #     df_gain=df_gain
     # )
 
-    save_predictions_to_csv(
-        test_df=test_df,
-        preds=preds,
-        test_start=test_start,
-        run_name_prefix=run_name_prefix,
-        eval_dir=eval_dir
-    )
+    # save_predictions_to_csv(
+    #     test_df=test_df,
+    #     preds=preds,
+    #     test_start=test_start,
+    #     run_name_prefix=run_name_prefix,
+    #     eval_dir=eval_dir
+    # )
 
     # --- MLflow logging ---
     if log_to_mlflow_flag:

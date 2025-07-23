@@ -1,0 +1,6 @@
+__pycache__/
+.ipynb_checkpoints/
+*.parquet
+*.zip
+.env
+spark_full/

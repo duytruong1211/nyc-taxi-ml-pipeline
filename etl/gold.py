@@ -87,6 +87,7 @@ summary AS (
         END AS vendor_name,
 
         st.tpep_pickup_datetime,
+        st.snapshot_month,
         DATE(st.tpep_pickup_datetime) AS pickup_date,
         HOUR(st.tpep_pickup_datetime) AS pickup_hour,
         CASE WHEN HOUR(st.tpep_pickup_datetime) BETWEEN 7 AND 9 THEN 1 ELSE 0 END AS is_rush_hour_morning,
@@ -218,13 +219,10 @@ def build_zone_rolling_features(
 
     duck.save_to_parquet(
         df=df,
-        path=output_parquet_path,
-        dedup_cols=["snapshot_month", "pu_zone", "do_zone"] if not overwrite else None
-    )
+        path=output_parquet_path    )
 
     duck.close()
     print(f"✅ Rolling zone features saved to: {output_parquet_path}")
-
 
 def build_main_trip_features(
     silver_csv_path: str = SILVER_NYC_CSV,
@@ -233,25 +231,28 @@ def build_main_trip_features(
     zone_avg_path: str = ZONE_FEATURES_PARQUET,
     output_parquet_path: str = MAIN_FEATURES_PARQUET,
     db_path: str = DUCKDB_PATH,
-    overwrite: bool = False,
+    overwrite: bool = False  # <-- NEW
 ):
     duck = DuckDBClient(db_path=db_path)
 
-    # Register all source tables
+    print("🔹 Loading tables...")
     duck.load_csv_as_table(silver_csv_path, "silver_taxi")
     duck.load_csv_as_table(dim_date_path, "dim_date")
     duck.load_csv_as_table(weather_path, "weather_features")
     duck.load_parquet_as_table(zone_avg_path, "zone_avg")
 
-    # Run query
+    # Run main feature logic
+    print("🧠 Running main_trip_sql query...")
     df = duck.run_query(main_trip_sql)
 
-    # Save
+    print(f"✅ Query returned {len(df):,} rows")
+
+    print("💾 Saving main features parquet...")
     duck.save_to_parquet(
         df=df,
-        path=output_parquet_path,
-        dedup_cols=["tpep_pickup_datetime"] if not overwrite else None
+        path=output_parquet_path
     )
 
+
     duck.close()
-    print(f"✅ Main trip features saved to: {output_parquet_path}")
+    print(f"🗂 Main features written to: {output_parquet_path}")

@@ -1,0 +1,28 @@
+services:
+  nyc-taxi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nyc-taxi-app
+    volumes:
+      - ./data:/app/data       
+      - ./mlruns:/app/mlruns      
+    stdin_open: true
+    tty: true
+
+  mlflow-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.mlflow-ui
+    image: mlflow-ui
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./mlruns:/mlflow/mlruns
+
+
+
+volumes:
+  nyc_data:
+
+  
