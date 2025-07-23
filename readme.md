@@ -5,7 +5,6 @@
 ![Docker](https://img.shields.io/badge/docker-ready-blue)
 ![MLflow](https://img.shields.io/badge/mlflow-enabled-yellow)
 ![pipeline](https://img.shields.io/badge/type-ML--Pipeline-black)
-![GitHub Repo stars](https://img.shields.io/github/stars/duytruong1211/nyc-taxi-ml-pipeline?style=social)
 
 
 A full-stack machine learning pipeline to predict NYC taxi trip duration.
