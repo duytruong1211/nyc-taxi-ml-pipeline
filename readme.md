@@ -1,14 +1,25 @@
 # 🗽 NYC Taxi ML Pipeline
 
+![build](https://img.shields.io/badge/build-passing-brightgreen)
+![python](https://img.shields.io/badge/python-3.10+-blue)
+![Docker](https://img.shields.io/badge/docker-ready-blue)
+![MLflow](https://img.shields.io/badge/mlflow-enabled-yellow)
+![pipeline](https://img.shields.io/badge/type-ML--Pipeline-black)
+![GitHub Repo stars](https://img.shields.io/github/stars/duytruong1211/nyc-taxi-ml-pipeline?style=social)
+
+
 A full-stack machine learning pipeline to predict NYC taxi trip duration.
 
-**Designed for:** clarity, reproducibility, and real-world ML infra readiness — with lean setup for cloning.
+**Designed for:** clarity, reproducibility, and real-world ML infra readiness — with a lean Docker setup for seamless cloning.
 
 ---
 ## Project Summary
 
-This is a solo project built as a demonstration of end-to-end ML workflow using NYC Taxi data.  
-All data processing, modeling, and documentation were done by me.
+A complete ML workflow built on NYC Taxi data — from raw ingestion to deployment-ready models.
+
+This project blends data engineering, feature store design, and monthly retraining using DuckDB, MLflow, and XGBoost. All packaged into a portable, Dockerized environment.
+
+Originally prototyped in Spark, the final pipeline is optimized in pandas for faster execution and easier forking.
 
 Data Source: NYC Taxi Dataset (https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)  
 Weather Data: Open-Meteo API (https://open-meteo.com)  
@@ -26,13 +37,8 @@ Weather Data: Open-Meteo API (https://open-meteo.com)
 
 > **Prototyped in Spark. Delivered in pandas.**
 
-The project began with a full **Spark-based workflow** for processing large-scale NYC TLC data, using:
-
-- 🔹 Spark for prototyping data transformations and rolling aggregations  
-- 🔹 dbt for SQL-style modeling  
-- 🔹 Dagster for orchestration (optional)
-
-However, for simplicity, speed, and **ease of cloning**, we **ported the full pipeline to Python + pandas**.
+Started with a Spark + dbt + Dagster stack for scalability.
+Final version is pure Python (pandas) + DuckDB for better speed and usability.
 
 ### ✅ Why pandas for final version?
 
@@ -82,16 +88,16 @@ make bulk
 # → Builds rolling features per PU/DO pair
 # → Trains + logs models per month
 
-# 📅 Ingest new month (incremental mode, ~15 sec, should be run after make bulk only, run the month in chronological order ie 2025-01, 2025-02 ...)
+# 📅 Ingest new data (incremental mode, ~15 sec)
 make incremental YEAR=2025 MONTH=1
-# → Ingests new trip data
-# → Updates zone-pair aggregates
-# → Retrains model on latest month
+# → Updates zone-pair features
+# → Retrains model for the new month
+# → Run chronologically (e.g. Jan → Feb → ...)
 
 # 📊 Launch MLflow UI to track model runs
 make ui
 # → Open http://localhost:5001 in browser
-# Click on the "Columns" tab in the top right to compare metrics like MAE, RMSE, and feature importance across runs.
+# Click on the "Columns" tab in the top right to compare metrics like MAE, RMSE, and feature importance.
 # 🧼 Cleanup (optional)
 make stop             # Stop all containers
 make clean            # Stop + remove volumes
@@ -148,6 +154,9 @@ You will see a dashboard like this. CLick on the Columns tab to track metrics( M
 
 ## 🧱 Feature Store Summary
 
+- **Rolling Aggregates** *(PU-DO pairs)*  
+  `avg_duration_min_3mo`, `avg_fare_12mo`, `trip_count_12mo`
+
 - **Temporal**  
   `pickup_hour`, `is_rush_hour_morning`, `is_weekend`
 
@@ -160,9 +169,6 @@ You will see a dashboard like this. CLick on the Columns tab to track metrics( M
 - **Weather** *(by borough & hour)*  
   `temperature`, `precipitation`, `cloudcover`
 
-- **Rolling Aggregates** *(PU-DO pairs)*  
-  `avg_duration_min_3mo`, `avg_fare_12mo`, `trip_count_12mo`
-
 
 ---
 
@@ -171,7 +177,7 @@ You will see a dashboard like this. CLick on the Columns tab to track metrics( M
 
 ## 🧰 Tech Stack
 
-- **Compute**: PySpark 3.x, Docker
+- **Compute**: PySpark 
 - **ETL**: Python, dbt
 - **DB**: DuckDB
 - **ML**: XGBoost
