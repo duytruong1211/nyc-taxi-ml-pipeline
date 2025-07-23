@@ -68,6 +68,8 @@ You can test Docker is working with:
 docker --version
 docker-compose --version
 ```
+⚙️ **Performance Tip:** For faster builds, adjust Docker’s CPU and memory limits based on your machine ( Docker Desktop -> Setting -> Resources)
+
 ## 🚀 Quickstart
 ```bash
 # ✅ Clone the repo
